@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>code editor</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="jquery-3.6.0.js"></script>
+</head>
+<body>
+	<div class="header">
+		<input type="checkbox" checked="checked" id="htmlCheckbox" onclick="htmlCheckbox()">Html&nbsp
+		<input type="checkbox" checked="checked" id="cssCheckbox" onclick="cssCheckbox()">Css&nbsp
+		<input type="checkbox" checked="checked" id="jsCheckbox" onclick="jsCheckbox()">Js
+	</div>
+	<div class="codePart">
+		<div class="codeCanvas">
+			<textarea id="htmlCode" placeholder="html code" oninput="showPreview()"></textarea>
+			<textarea id="cssCode" placeholder="css code" oninput="showPreview()"></textarea>
+			<textarea id="jsCode" placeholder="javascript code" oninput="showPreview()"></textarea>
+		</div>
+		<div class="previewCanvas">
+			<iframe id="previewWindow"></iframe>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function showPreview(){
+			let htmlCode = document.getElementById("htmlCode").value;
+			let cssCode = "<style>" + document.getElementById("cssCode").value + "</style>";
+			let jsCode = "<script>" + document.getElementById("jsCode").value + "</scr" + "ipt>";
+			let frame = document.getElementById("previewWindow").contentWindow.document;
+			frame.open();
+			frame.write(htmlCode + cssCode + jsCode);
+			frame.close();
+		}
+		function htmlCheckbox(){
+			if ($("#htmlCheckbox").prop("checked")) {
+				console.log("html checkbox checked");
+				$("#htmlCode").show();
+			}else{
+				console.log("html checkbox is not checked");
+				$("#htmlCode").hide();
+			}
+		}
+		function cssCheckbox(){
+			if ($("#cssCheckbox").prop("checked")) {
+				console.log("css ceckbox checked");
+				$("#cssCode").show();
+			}else{
+				console.log("css checkbox is not checked");
+				$("#cssCode").hide();
+			}
+		}
+		function jsCheckbox(){
+			if ($("#jsCheckbox").prop("checked")) {
+				console.log("js checkbox checked");
+				$("#jsCode").show();
+			}else{
+				console.log("js checkbox is not checked");
+				$("#jsCode").hide();
+			}
+		}
+	</script>
+</body>
+</html>
